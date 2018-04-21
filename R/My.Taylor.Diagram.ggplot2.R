@@ -140,13 +140,14 @@ Taylor <- function(data, nRef = 2, nModel = 3, model.color = c("red", "blue", "g
       P <- P + geom_point(mapping = aes_string(x = sd.f * cos(acos(R)),
                                                y = sd.f * sin(acos(R)), 
                                                size = 2), 
-                          shape = 19, color = symbol.color[j])
+                          shape = 19, color = model.color[j])
       
-      P <- P + geom_text(mapping = aes_string(x = sd.f * cos(acos(R)),
-                                              y = sd.f * sin(acos(R)) + 0.08,
-                                              label = model.lable[i]),
-                         color = symbol.color[j])
-      
+      if (nRef != 1) {
+        P <- P + geom_text(mapping = aes_string(x = sd.f * cos(acos(R)),
+                                                y = sd.f * sin(acos(R)) + 0.08,
+                                                label = ref.lable[i]),
+                           color = model.color[j])
+      }
     }
   }
 
